@@ -1,0 +1,66 @@
+//1.
+var covid = flip(0.01)
+var positivo = function() {covid ? flip(0.7) : flip(0.1)}
+var r = repeat(100,positivo)
+viz.hist(r)
+
+
+//2.
+var modelo = function(){
+  var covid = flip(0.01)
+  var testeA = covid ? flip(0.7) : flip(0.1)
+  var testeB = covid ? flip(0.9) : flip(0.01)
+  var sns24 = flip(0.8) ? testeA : testeB
+  return sns24
+}
+
+Infer(modelo)
+
+
+//3.
+var modelo = function(){
+  var covid = flip(0.01)
+  var testeA = covid ? flip(0.7) : flip(0.1)
+  condition(testeA)
+  return covid
+}
+
+Infer(modelo)
+
+//4.1
+var modelo = function(){
+  var covid = flip(0.01)
+  var testeA = covid ? flip(0.7) : flip(0.1)
+  var testeB = covid ? flip(0.9) : flip(0.01)
+  var positivo = flip(0.8) ? testeA : testeB
+  condition(positivo)
+  return covid
+}
+
+Infer(modelo)
+
+
+//4.2
+var modelo = function(){
+  var covid = flip(0.01)
+  var testeA = covid ? flip(0.7) : flip(0.1)
+  var testeB = covid ? flip(0.9) : flip(0.01)
+  var positivo = flip(0.8) ? testeA : testeB
+  condition(positivo)
+  return testeA
+}
+
+Infer(modelo)
+
+
+//4.3
+var modelo = function(){
+  var covid = flip(0.01)
+  var testeA = covid ? flip(0.7) : flip(0.1)
+  var testeB = covid ? flip(0.9) : flip(0.01)
+  var positivo = flip(0.8) ? testeA : testeB
+  condition(positivo && covid)
+  return testeA 
+}
+
+Infer(modelo)
