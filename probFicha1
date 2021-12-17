@@ -1,0 +1,81 @@
+//Pergunta 1.1
+var n = 10
+var moeda = repeat(n,flip)
+var contaCara = sum(moeda)
+
+//Pergunta 1.2
+var id = function(x){return x}
+var all_crown = function(){
+    if(sum(moeda) == 0) {return true}
+    else {return false}
+}
+
+//Pergunta 1.3
+var todosiguais = function(){
+    if(sum(moeda) == n || sum(moeda) == 0) {return true}
+    else {return false} 
+}
+
+//Pergunta 2
+var thousand = repeat(1000,flip)
+viz(thousand)
+
+//Pergunta 3
+var moeda = function(){flip(0.6)}
+var thousand = repeat(1000,flip)
+viz(thousand)
+
+//Pergunta 4.1
+var fivecoins = function(){repeat(5,flip)}
+
+//Pergunta 4.2
+var v = ["cara","coroa"]
+var moeda = function(){return categorical({vs:v})}
+var moedas = repeat(5,moeda)
+
+//Pergunta 5
+var dado = function(){return randomInteger(6)+1}
+Infer(dado)
+
+//Pergunta 6
+var n = 2
+var dados = function(){repeat(n,dado)}
+viz.table(Infer(dados))
+
+//Pergunta 7
+var copas = ['copas','copas','copas','copas','copas','copas','copas','copas','copas','copas','copas','copas','copas']
+var ouros = ['ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros']
+var espadas = ['espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas']
+var paus = ['paus','paus','paus','paus','paus','paus','paus','paus','paus','paus','paus','paus','paus']
+var naipes = copas.concat(ouros).concat(espadas).concat(paus)
+
+var v = ['2_','3_','4_','5_','6_','7_','8_','9_','10_','J_','Q_','K_','A_']
+var valores = v.concat(v).concat(v).concat(v)
+var naipe = categorical({vs:naipes})
+var carta = function(){return categorical({vs:valores}.concat(naipe))}
+
+//Pergunta 8
+
+var n = 4
+
+var copas = ['copas','copas','copas','copas','copas','copas','copas','copas','copas','copas','copas','copas','copas']
+var ouros = ['ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros','ouros']
+var espadas = ['espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas','espadas']
+var paus = ['paus','paus','paus','paus','paus','paus','paus','paus','paus','paus','paus','paus','paus']
+var naipes = copas.concat(ouros).concat(espadas).concat(paus)
+
+var v = ['2_','3_','4_','5_','6_','7_','8_','9_','10_','J_','Q_','K_','A_']
+var valores = v.concat(v).concat(v).concat(v)
+
+var carta = function(){
+  var val = categorical({vs:valores})
+  remove(val,valores)
+  var naipe = categorical({vs:naipes})
+  remove(naipe,naipes)
+  return val.concat(naipe)
+  
+}
+
+var mao = function(){
+  repeat(n,carta)
+}
